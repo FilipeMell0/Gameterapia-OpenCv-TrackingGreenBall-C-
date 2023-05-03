@@ -17,7 +17,7 @@ int main() {
         VideoCapture cap(0);
         if (!cap.isOpened())
         {
-            cout << "alterar o número da porta da câmera";
+            cout << "alterar o nÃºmero da porta da cÃ¢mera";
             return -1;
         }
         while (true)
@@ -28,7 +28,7 @@ int main() {
             // Checa se a imagem foi criada
             // successfully or not
             if (!frame.data) {
-                std::cout << "Não foi possível abrir ou "
+                std::cout << "NÃ£o foi possÃ­vel abrir ou "
                     << "encontre a imagem\n";
 
                 return 0;
@@ -76,7 +76,11 @@ int main() {
             cvNamedWindow("Detector de bola verde", CV_WINDOW_NORMAL);
             cvSetWindowProperty("Detector de bola verde", CV_WND_PROP_FULLSCREEN, CV_WINDOW_FULLSCREEN);
 
-            imshow("Detector de bola verde", frame);
+            cv::Mat dst;
+            cv::flip(frame, dst, 1);
+            imshow("Detector de bola verde", dst);
+
+            //imshow("Detector de bola verde", frame);
             //imshow("Thresholded Tennis Ball", threshFrame);
 
 
@@ -95,7 +99,7 @@ int main() {
         VideoCapture cap(0);
         if (!cap.isOpened())
         {
-            cout << "alterar o número da porta da câmera";
+            cout << "alterar o nÃºmero da porta da cÃ¢mera";
             return -1;
         }
         while (true)
@@ -106,7 +110,7 @@ int main() {
             // Checa se a imagem foi criada
             // successfully or not
             if (!frame.data) {
-                std::cout << "Não foi possível abrir ou "
+                std::cout << "NÃ£o foi possÃ­vel abrir ou "
                     << "encontre a imagem\n";
 
                 return 0;
@@ -156,7 +160,11 @@ int main() {
             cvNamedWindow("Detector de bola verde", CV_WINDOW_NORMAL);
             cvSetWindowProperty("Detector de bola verde", CV_WND_PROP_FULLSCREEN, CV_WINDOW_FULLSCREEN);
 
-            imshow("Detector de bola verde", frame);
+            cv::Mat dst;
+            cv::flip(frame, dst, 1);
+            imshow("Detector de bola verde", dst);
+
+            //imshow("Detector de bola verde", frame);
             //imshow("Thresholded Tennis Ball", threshFrame);
 
 
