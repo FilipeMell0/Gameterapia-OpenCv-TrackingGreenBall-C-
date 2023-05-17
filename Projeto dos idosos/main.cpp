@@ -1,5 +1,7 @@
-#include <iostream>
+#include <iostream>-
 #include <opencv2/opencv.hpp>
+#include <deque>
+#include <chrono>
 
 using namespace cv;
 using namespace std;
@@ -7,13 +9,16 @@ using namespace std;
 int main() {
 
     int respforma;
+    int contador = 1;
 
 
-    cout << "Qual movimento você deseja? \n 1- Quadrado \n 2- Elevação lateral \n";
+    cout << "Qual movimento você deseja? \n 1- Ampulheta \n 2- Elevacao lateral \n";
     cin >> respforma;
 
     if (respforma == 1)
     {
+        Point previousPosition(-1, -1); // Posição anterior da bola
+
         VideoCapture cap(0);
         if (!cap.isOpened())
         {
@@ -34,7 +39,130 @@ int main() {
                 return 0;
             }
 
-           
+            contador = 1;
+
+
+            int radius = 15;
+
+
+            while (contador < 2)  // meio
+            {
+                int thickness = -1;
+
+                Point center(325, 175);//declara o ponto central
+                Scalar line_Color(25, 25, 112);//Cor do bgl
+
+                circle(frame, center, radius, line_Color, thickness);//Usa circle()function para desenhar a linha
+
+                contador++;
+            }
+
+            contador = 1;
+
+            while (contador < 2) // meio baixo
+            {
+                int thickness = -1;
+
+                Point center(325, 325);//declara o ponto central
+                Scalar line_Color(25, 25, 112);//Cor do bgl
+
+                circle(frame, center, radius, line_Color, thickness);//Usa circle()function para desenhar a linha
+
+                contador++;
+            }
+
+            contador = 1;
+
+            while (contador < 2) // meio cima
+            {
+                int thickness = -1;
+
+                Point center(325, 25);//declara o ponto central
+                Scalar line_Color(25, 25, 112);//Cor do bgl
+
+                circle(frame, center, radius, line_Color, thickness);//Usa circle()function para desenhar a linha
+
+                contador++;
+            }
+
+            contador = 1;
+
+            while (contador < 2) // cima direita
+            {
+                int thickness = -1;
+
+                Point center(525, 25);//declara o ponto central
+                Scalar line_Color(25, 25, 112);//Cor do bgl
+
+                circle(frame, center, radius, line_Color, thickness);//Usa circle()function para desenhar a linha
+
+                contador++;
+            }
+
+            contador = 1;
+
+            while (contador < 2) // cima esquerda
+            {
+                int thickness = -1;
+
+                Point center(125, 25);//declara o ponto central
+                Scalar line_Color(25, 25, 112);//Cor do bgl
+
+                circle(frame, center, radius, line_Color, thickness);//Usa circle()function para desenhar a linha
+
+                contador++;
+            }
+
+            contador = 1;
+
+            while (contador < 2) // baixo esquerda
+            {
+                int thickness = -1;
+
+                Point center(125, 325);//declara o ponto central
+                Scalar line_Color(25, 25, 112);//Cor do bgl
+
+                circle(frame, center, radius, line_Color, thickness);//Usa circle()function para desenhar a linha
+
+                contador++;
+            }
+
+            contador = 1;
+
+            while (contador < 2) // baixo direita
+            {
+                int thickness = -1;
+
+                Point center(525, 325);//declara o ponto central
+                Scalar line_Color(25, 25, 112);//Cor do bgl
+
+                circle(frame, center, radius, line_Color, thickness);//Usa circle()function para desenhar a linha
+
+                contador++;
+            }
+
+            int thickness = 2;
+
+            Point a1(125, 325), a2(525, 25);
+
+            line(frame, a1, a2, Scalar(25, 25, 112),
+                thickness, LINE_8);
+
+            Point a3(125, 25), a4(525, 25);
+
+            line(frame, a3, a4, Scalar(25, 25, 112),
+                thickness, LINE_8);
+
+            Point a5(125, 25), a6(525, 325);
+
+            line(frame, a5, a6, Scalar(25, 25, 112),
+                thickness, LINE_8);
+
+            Point a7(125, 325), a8(525, 325);
+
+            line(frame, a7, a8, Scalar(25, 25, 112),
+                thickness, LINE_8);
+
             Mat hsvFrame;
             cvtColor(frame, hsvFrame, CV_RGB2HSV);
 
@@ -53,6 +181,13 @@ int main() {
             //Draw crosshair
             Scalar color = cv::Scalar(0, 0, 255);
             drawMarker(frame, com, color, cv::MARKER_CROSS, 20, 2);
+
+            if (previousPosition.x != -1 && previousPosition.y != -1) {
+                // Desenha a linha entre a posição atual e a posição anterior da bola
+                line(frame, previousPosition, com, Scalar(0, 0, 255), 2);
+            }
+
+            previousPosition = com; // Atualiza a posição anterior
 
             cvNamedWindow("Detector de bola verde", CV_WINDOW_NORMAL);
             cvSetWindowProperty("Detector de bola verde", CV_WND_PROP_FULLSCREEN, CV_WINDOW_FULLSCREEN);
@@ -77,6 +212,9 @@ int main() {
 
     if (respforma == 2)
     {
+        Point previousPosition(-1, -1); // Posição anterior da bola
+        deque<pair<Point, chrono::steady_clock::time_point>> ballPositions; // Lista das últimas posições da bola e seus tempos
+
         VideoCapture cap(0);
         if (!cap.isOpened())
         {
@@ -97,27 +235,15 @@ int main() {
                 return 0;
             }
 
-            /* // Top Left Corner
-            Point p1(90, 90);
+            contador = 1;
 
-            // Bottom Right Corner
-            Point p2(255, 255);
-
-
-
-            // Desenha o retangulo
-            rectangle(frame, p1, p2,
-                Scalar(0, 0, 255),
-                thickness, LINE_8); */
-
-            int contador = 1;
+            int radius = 15; //Declara o raio
 
             while (contador < 2)
             {
                 int thickness = -1;
 
                 Point center(100, 74);//declara o ponto central
-                int radius = 25; //Declara o raio
                 Scalar line_Color(25, 25, 112);//Cor do bgl
 
                 circle(frame, center, radius, line_Color, thickness);//Usa circle()function para desenhar a linha
@@ -132,7 +258,6 @@ int main() {
                 int thickness = -1;
 
                 Point center(225, 225);//declara o ponto central
-                int radius = 25; //Declara o raio
                 Scalar line_Color(25, 25, 112);//Cor do bgl
 
                 circle(frame, center, radius, line_Color, thickness);//Usa circle()function para desenhar a linha
@@ -147,7 +272,6 @@ int main() {
                 int thickness = -1;
 
                 Point center(500, 74);//declara o ponto central
-                int radius = 25; //Declara o raio
                 Scalar line_Color(25, 25, 112);//Cor do bgl
 
                 circle(frame, center, radius, line_Color, thickness);//Usa circle()function para desenhar a linha
@@ -162,7 +286,6 @@ int main() {
                 int thickness = -1;
 
                 Point center(375, 225);//declara o ponto central
-                int radius = 25; //Declara o raio
                 Scalar line_Color(25, 25, 112);//Cor do bgl
 
                 circle(frame, center, radius, line_Color, thickness);//Usa circle()function para desenhar a linha
@@ -186,7 +309,7 @@ int main() {
 
             blur(hsvFrame, hsvFrame, cv::Size(1, 1));
 
-            //Threshold 
+             //Threshold 
             Scalar lowerBound = cv::Scalar(55, 100, 50);
             Scalar upperBound = cv::Scalar(90, 255, 255);
             Mat threshFrame;
@@ -200,6 +323,25 @@ int main() {
             Scalar color = cv::Scalar(0, 0, 255);
             drawMarker(frame, com, color, cv::MARKER_CROSS, 20, 2);
 
+            if (previousPosition.x != -1 && previousPosition.y != -1) {
+                // Adiciona a posição atual e seu tempo à lista
+                auto currentTime = chrono::steady_clock::now();
+                ballPositions.push_back(make_pair(com, currentTime));
+
+                // Remove as posições antigas da lista com base no tempo limite (2 segundos neste exemplo)
+                while (!ballPositions.empty() &&
+                    chrono::duration_cast<chrono::seconds>(currentTime - ballPositions.front().second).count() > 1) {
+                    ballPositions.pop_front();
+                }
+
+                // Desenha linhas entre as posições na lista
+                for (size_t i = 1; i < ballPositions.size(); i++) {
+                    line(frame, ballPositions[i - 1].first, ballPositions[i].first, Scalar(0, 0, 255), 2);
+                }
+            }
+
+            previousPosition = com; // Atualiza a posição anterior
+
             cvNamedWindow("Detector de bola verde", CV_WINDOW_NORMAL);
             cvSetWindowProperty("Detector de bola verde", CV_WND_PROP_FULLSCREEN, CV_WINDOW_FULLSCREEN);
 
@@ -207,15 +349,11 @@ int main() {
             cv::flip(frame, dst, 1);
             imshow("Detector de bola verde", dst);
 
-            //imshow("Detector de bola verde", frame);
-            //imshow("Thresholded Tennis Ball", threshFrame);
 
-
-            // Show our image inside a window
             waitKey(30) == 27;
 
             if (cv::waitKey(30) >= 10)
-                break;
+                break; 
 
 
         }
