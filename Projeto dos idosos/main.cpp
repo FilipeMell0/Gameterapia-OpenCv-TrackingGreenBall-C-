@@ -12,7 +12,7 @@ int main() {
     int contador = 1;
 
 
-    cout << "Qual movimento você deseja? \n 1- Ampulheta \n 2- Elevacao lateral \n";
+    cout << "Qual movimento você deseja? \n 1- Ampulheta \n 2- triangulo \n";
     cin >> respforma;
 
     if (respforma == 1)
@@ -50,7 +50,7 @@ int main() {
                 int thickness = -1;
 
                 Point center(325, 175);//declara o ponto central
-                Scalar line_Color(25, 25, 112);//Cor do bgl
+                Scalar line_Color(218, 112, 214);//Cor do bgl
 
                 circle(frame, center, radius, line_Color, thickness);//Usa circle()function para desenhar a linha
 
@@ -64,7 +64,7 @@ int main() {
                 int thickness = -1;
 
                 Point center(325, 325);//declara o ponto central
-                Scalar line_Color(25, 25, 112);//Cor do bgl
+                Scalar line_Color(0, 0, 255);//Cor do bgl
 
                 circle(frame, center, radius, line_Color, thickness);//Usa circle()function para desenhar a linha
 
@@ -78,7 +78,7 @@ int main() {
                 int thickness = -1;
 
                 Point center(325, 25);//declara o ponto central
-                Scalar line_Color(25, 25, 112);//Cor do bgl
+                Scalar line_Color(255, 69, 0);//Cor do bgl
 
                 circle(frame, center, radius, line_Color, thickness);//Usa circle()function para desenhar a linha
 
@@ -92,7 +92,7 @@ int main() {
                 int thickness = -1;
 
                 Point center(525, 25);//declara o ponto central
-                Scalar line_Color(25, 25, 112);//Cor do bgl
+                Scalar line_Color(119, 136, 153);//Cor do bgl
 
                 circle(frame, center, radius, line_Color, thickness);//Usa circle()function para desenhar a linha
 
@@ -106,7 +106,7 @@ int main() {
                 int thickness = -1;
 
                 Point center(125, 25);//declara o ponto central
-                Scalar line_Color(25, 25, 112);//Cor do bgl
+                Scalar line_Color(128, 0, 128);//Cor do bgl
 
                 circle(frame, center, radius, line_Color, thickness);//Usa circle()function para desenhar a linha
 
@@ -120,7 +120,7 @@ int main() {
                 int thickness = -1;
 
                 Point center(125, 325);//declara o ponto central
-                Scalar line_Color(25, 25, 112);//Cor do bgl
+                Scalar line_Color(255, 165, 0);//Cor do bgl
 
                 circle(frame, center, radius, line_Color, thickness);//Usa circle()function para desenhar a linha
 
@@ -134,7 +134,7 @@ int main() {
                 int thickness = -1;
 
                 Point center(525, 325);//declara o ponto central
-                Scalar line_Color(25, 25, 112);//Cor do bgl
+                Scalar line_Color(0, 0, 0);//Cor do bgl
 
                 circle(frame, center, radius, line_Color, thickness);//Usa circle()function para desenhar a linha
 
@@ -213,7 +213,6 @@ int main() {
     if (respforma == 2)
     {
         Point previousPosition(-1, -1); // Posição anterior da bola
-        deque<pair<Point, chrono::steady_clock::time_point>> ballPositions; // Lista das últimas posições da bola e seus tempos
 
         VideoCapture cap(0);
         if (!cap.isOpened())
@@ -237,14 +236,33 @@ int main() {
 
             contador = 1;
 
-            int radius = 15; //Declara o raio
 
-            while (contador < 2)
+            int radius = 15;
+
+
+            contador = 1;
+
+            while (contador < 2) // meio baixo
             {
                 int thickness = -1;
 
-                Point center(100, 74);//declara o ponto central
-                Scalar line_Color(25, 25, 112);//Cor do bgl
+                Point center(325, 325);//declara o ponto central
+                Scalar line_Color(0, 0, 255);//Cor do bgl
+
+                circle(frame, center, radius, line_Color, thickness);//Usa circle()function para desenhar a linha
+
+                contador++;
+            }
+
+
+            contador = 1;
+
+            while (contador < 2) // cima direita
+            {
+                int thickness = -1;
+
+                Point center(525, 25);//declara o ponto central
+                Scalar line_Color(119, 136, 153);//Cor do bgl
 
                 circle(frame, center, radius, line_Color, thickness);//Usa circle()function para desenhar a linha
 
@@ -253,12 +271,12 @@ int main() {
 
             contador = 1;
 
-            while (contador < 2)
+            while (contador < 2) // cima esquerda
             {
                 int thickness = -1;
 
-                Point center(225, 225);//declara o ponto central
-                Scalar line_Color(25, 25, 112);//Cor do bgl
+                Point center(125, 25);//declara o ponto central
+                Scalar line_Color(128, 0, 128);//Cor do bgl
 
                 circle(frame, center, radius, line_Color, thickness);//Usa circle()function para desenhar a linha
 
@@ -267,41 +285,22 @@ int main() {
 
             contador = 1;
 
-            while (contador < 2)
-            {
-                int thickness = -1;
 
-                Point center(500, 74);//declara o ponto central
-                Scalar line_Color(25, 25, 112);//Cor do bgl
-
-                circle(frame, center, radius, line_Color, thickness);//Usa circle()function para desenhar a linha
-
-                contador++;
-            }
-
-            contador = 1;
-
-            while (contador < 2)
-            {
-                int thickness = -1;
-
-                Point center(375, 225);//declara o ponto central
-                Scalar line_Color(25, 25, 112);//Cor do bgl
-
-                circle(frame, center, radius, line_Color, thickness);//Usa circle()function para desenhar a linha
-
-                contador++;
-            }
-
-            Point p1(500, 74), p2(375, 225);
             int thickness = 2;
 
-            line(frame, p1, p2, Scalar(25, 25, 112),
+            Point a1(325, 325), a2(525, 25);
+
+            line(frame, a1, a2, Scalar(25, 25, 112),
                 thickness, LINE_8);
 
-            Point p3(100, 74), p4(225, 225);
+            Point a3(325, 325), a4(125, 25);
 
-            line(frame, p3, p4, Scalar(25, 25, 112),
+            line(frame, a3, a4, Scalar(25, 25, 112),
+                thickness, LINE_8);
+
+            Point a5(125, 25), a6(525, 25);
+
+            line(frame, a5, a6, Scalar(25, 25, 112),
                 thickness, LINE_8);
 
             Mat hsvFrame;
@@ -309,7 +308,7 @@ int main() {
 
             blur(hsvFrame, hsvFrame, cv::Size(1, 1));
 
-             //Threshold 
+            //Threshold 
             Scalar lowerBound = cv::Scalar(55, 100, 50);
             Scalar upperBound = cv::Scalar(90, 255, 255);
             Mat threshFrame;
@@ -324,20 +323,8 @@ int main() {
             drawMarker(frame, com, color, cv::MARKER_CROSS, 20, 2);
 
             if (previousPosition.x != -1 && previousPosition.y != -1) {
-                // Adiciona a posição atual e seu tempo à lista
-                auto currentTime = chrono::steady_clock::now();
-                ballPositions.push_back(make_pair(com, currentTime));
-
-                // Remove as posições antigas da lista com base no tempo limite (2 segundos neste exemplo)
-                while (!ballPositions.empty() &&
-                    chrono::duration_cast<chrono::seconds>(currentTime - ballPositions.front().second).count() > 1) {
-                    ballPositions.pop_front();
-                }
-
-                // Desenha linhas entre as posições na lista
-                for (size_t i = 1; i < ballPositions.size(); i++) {
-                    line(frame, ballPositions[i - 1].first, ballPositions[i].first, Scalar(0, 0, 255), 2);
-                }
+                // Desenha a linha entre a posição atual e a posição anterior da bola
+                line(frame, previousPosition, com, Scalar(0, 0, 255), 2);
             }
 
             previousPosition = com; // Atualiza a posição anterior
@@ -349,19 +336,24 @@ int main() {
             cv::flip(frame, dst, 1);
             imshow("Detector de bola verde", dst);
 
+            //imshow("Detector de bola verde", frame);
+            //imshow("Thresholded Tennis Ball", threshFrame);
 
+
+            // Show our image inside a window
             waitKey(30) == 27;
 
             if (cv::waitKey(30) >= 10)
-                break; 
+                break;
 
 
         }
+        
     }
 
     else
     {
-        cout << "Aapenas 1 ou 2 eh aceito";
+        cout << "Apenas 1 ou 2 eh aceito";
     }
 
 }
